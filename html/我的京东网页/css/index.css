@@ -1,0 +1,151 @@
+@charset "UTF-8";
+.banner604 {
+  position: relative;
+}
+.banner604 a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 603px;
+    width: 100%;
+    background: url("../images/banner.jpg") no-repeat top center;
+}
+.main {
+    position: relative;
+}
+.slider {
+    width: 730px;
+    height: 453px;
+    background-color: #B1191A;
+    margin: 12px 0 0 220px;
+    float: left;
+    position: relative;
+}
+.circle {
+    top: 427px;
+    left: 50%;
+    bottom: 8px;
+    margin-left: -66px;
+    position: absolute;
+}
+.circle li {
+    float: left;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: #3E3E3E;
+    line-height: 18px;
+    text-align: center;
+    color: #fff;
+    margin: 0 2px;
+}
+.circle li.current {
+    background-color: #B61B1F;
+}
+.arrow-l,.arrow-r {
+    position: absolute;
+    width: 28px;
+    height: 62px;
+    top: 50%;
+    margin-top: -31px;
+    color: #fff;
+    font: 500 18px/62px "宋体";
+    text-align: center;
+    background-color: rgba(0,0,0,.3);
+}
+.arrow-l {
+    left: 0;
+}
+.arrow-r {
+    right: 0;
+}
+.arrow-l:hover,.arrow-r:hover {
+    background-color: rgba(0,0,0,.6);
+}
+.news {
+    float: right;
+    width: 248px;
+    height: 451px;
+    margin-top: 12px;
+    border: 1px solid #E4E4E4;
+}
+.jd-news {
+    height: 200px;
+    border-bottom: 1px dashed #E4E4E4;
+}
+.lifeservi .dt,.jd-news .dt {
+    height: 43px;
+    border-bottom: 1px dotted #E4E4E4;
+    line-height: 43px;
+}
+.lifeservi .dt h3,.jd-news .dt h3{
+    float: left;
+    padding-left: 15px;
+    color: #666;
+    font: 14px/43px "microsfot yahei";
+}
+.jd-news .dt a {
+    float: right;
+    font: 14px/43px "宋体";
+    padding-right: 15px;
+}
+.jd-news .dd ul {
+    padding: 8px 0 0 15px;
+}
+.jd-news .dd li {
+    line-height: 28px;
+}
+.jd-news .dd li span {
+    font-weight: 700;
+    margin-right: 5px;
+}
+.lifeservi {
+    height: 251px;
+    width: 248px;
+    overflow: hidden;
+}
+.lifeservi ul {
+    width: 252px;
+}
+.lifeservi ul li {
+    float: left;
+    width: 62px;
+    height: 70px;
+    border: 1px solid #e4e4e4;
+    border-top: 0;
+    margin-left: -1px;
+}
+.lifeservi ul a {
+    display: block;
+    height: 70px;
+    padding-top: 44px;
+    text-align: center;
+    position: relative;
+}
+
+.lifeservi ul i {
+    position: absolute;
+    top: 12px;
+    left: 18px;
+    width: 25px;
+    height: 25px;
+    background: url("../images/icon_lifeserv.png") no-repeat top right;
+}
+.today{
+    position: relative;
+}
+.night {
+    margin: 10px 0 28px 0;
+}
+.night-r {
+    width:1000px;
+    height: 160px;
+    float: right;
+}
+.night-r ul {
+    width: 500%;
+}
+.night-r li {
+    float: left;
+
+}
