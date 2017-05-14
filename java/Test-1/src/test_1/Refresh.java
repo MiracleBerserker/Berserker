@@ -50,6 +50,15 @@ public class Refresh extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
+		  ServletInputStream sis= req.getInputStream();
+		  int len=-1;
+		  byte []buff=new byte[1024];
+		  while((len=sis.read(buff))!=-1){
+			  System.out.println(new String(buff,0,len,"utf-8"));
+		  }
+		  
+		  resp.getWriter().write(new String("老时采菊东篱下".getBytes("utf-8"),"iso-8859-1"));
+		  
 	}
 	
 }
