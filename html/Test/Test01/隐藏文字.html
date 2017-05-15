@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>隐藏文字</title>
+    <style type="text/css">
+        button,input {
+            border: 0;
+            padding: 0;
+            outline-style: none;
+        }
+        .search {
+            width: 258px;
+            height: 40px;
+            margin: 100px auto;
+            background-color: pink;
+        }
+        .left {
+            float: left;
+            width: 208px;
+            height: 40px;
+            padding-left: 8px;
+            color: #ccc;
+            background: url("images/left.jpg");
+        }
+        .right {
+            float: right;
+            width: 42px;
+            height: 40px;
+            background: url("images/right.jpg") no-repeat;
+        }
+    </style>
+    <script>
+       window.onload=function () {
+           var ip=document.getElementsByClassName("left")[0];
+           ip.onfocus=function () {
+               if(ip.value==="请输入..."){
+                   this.value="";
+                   this.style.color="rgb(51,51,51)";
+               }else{
+                   this.select();
+               }
+           };
+           ip.onblur=function () {
+
+           }
+
+
+       }
+    </script>
+</head>
+<body>
+  <div class="search">
+      <input type="text" value="请输入..." class="left"/>
+      <button class="right"></button>
+  </div>
+</body>
+</html>

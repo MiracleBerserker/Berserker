@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>简单的表单验证</title>
+    <style type="text/css">
+        input {
+            outline-style: none;
+        }
+        .box {
+            margin: 100px auto;
+            text-align: center;
+        }
+        span {
+            display: inline-block;
+            border: 1px solid #ccc;
+            width: 150px;
+            height: 20px;
+            line-height: 20px;
+            padding-left: 20px;
+            font-size: 12px;
+            text-align: left;
+            color: #999;
+            background-color: #eee;
+        }
+        .wrong {
+            background: url("images/wrong.png") no-repeat #FFDCD0 4px 3px;
+            border: 1px solid #FFAC91;
+            color: #FF6B39;
+        }
+        .right {
+            color: #5EFF5E;
+            border: 1px solid #ACFFAC;
+            background: url("images/right.png") no-repeat #DFFFDF 4px 3px;
+        }
+    </style>
+    <script>
+        window.onload=function () {
+            var ip=document.getElementById("txt");
+            ip.onblur=function () {
+            //console.log("正确触发函数");
+                var vu=this.value;
+              if(vu===""||null||undefined){
+                  document.getElementById("result").classList.remove("right");
+                  document.getElementById("result").classList.add("wrong");
+                  document.getElementById("result").innerHTML="不能为空";
+              }else if(vu>100||vu<0){
+                  document.getElementById("result").classList.remove("right");
+                  document.getElementById("result").classList.add("wrong");
+                  document.getElementById("result").innerHTML="请输入合法的数值";
+              }else{
+                  document.getElementById("result").classList.remove("wrong");
+                  document.getElementById("result").classList.add("right");
+                  document.getElementById("result").innerHTML="格式正确合法";
+              }
+            }
+        }
+    </script>
+</head>
+<body>
+  <div class="box">
+      <label for="txt">语文:</label>
+      <input type="text" id="txt"/>
+      <span id="result">请输入成绩</span>
+  </div>
+</body>
+</html>

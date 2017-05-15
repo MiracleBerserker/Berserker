@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>鼠标展示网页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .show ul{
+            list-style: none;
+            border-top: 1px solid #ccc;
+            overflow: hidden;
+        }
+        .show {
+            margin: 100px auto;
+            width: 360px;
+            height: 70px;
+            padding-top: 360px;
+            border: 1px solid #ccc;
+            overflow: hidden;
+            background: url("images/01big.jpg") no-repeat left top;
+        }
+        .show li {
+            float: left;
+        }
+    </style>
+    <!--js部分-->
+    <script type="text/javascript">
+        window.onload=function () {
+            var images = document.getElementsByTagName("img");
+            //console.log(images);
+            for (var i=0;i<5;i++){
+              images[i].onmousemove=function () {
+                  document
+                      .getElementsByClassName("show")[0]
+                      .style
+                      .backgroundImage="url("+this.src.substring(0,this.src.indexOf("."))+"big.jpg)";
+              }
+            }
+        };
+
+    </script>
+</head>
+<body>
+  <div class="show">
+      <ul>
+          <li><img src="images/01.jpg" alt="赶快来买哦！！"></li>
+          <li><img src="images/02.jpg" alt="赶快来买哦！！"></li>
+          <li><img src="images/03.jpg" alt="赶快来买哦！！"></li>
+          <li><img src="images/04.jpg" alt="赶快来买哦！！"></li>
+          <li><img src="images/05.jpg" alt="赶快来买哦！！"></li>
+      </ul>
+  </div>
+</body>
+</html>
