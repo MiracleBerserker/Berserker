@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>防淘宝搜索框</title>
+    <style type="text/css">
+        .search {
+            width: 300px;
+            height: 30px;
+            margin: 100px auto;
+            position: relative;
+        }
+        .search input {
+            width: 200px;
+            height: 25px;
+        }
+        .search label {
+            position: absolute;
+            font-size: 12px;
+            color: #ccc;
+            left: 20px;
+            top: 8px;
+            cursor: text;
+        }
+    </style>
+    <script>
+        window.onload=function () {
+            var ip =document.getElementsByTagName("input")[0];
+            ip.oninput=function () {
+                document.getElementsByTagName("label")[0].style.display="none";
+            };
+            ip.onblur=function () {
+              if(this.value==""||this.value==null||this.value==undefined){
+                  document.getElementsByTagName("label")[0].style.display="block";
+              }
+            }
+
+        };
+
+
+    </script>
+</head>
+<body>
+  <div class="search">
+      <input type="text" id="txt"/>
+      <label for="txt">miracle喜欢cherry</label>
+  </div>
+</body>
+</html>

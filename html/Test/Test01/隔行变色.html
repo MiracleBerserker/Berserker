@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>隔行变色</title>
+    <style type="text/css">
+        ul{
+            list-style-type: none;
+        }
+        .box {
+            width: 300px;
+            margin: 100px auto;
+        }
+        .box li {
+            line-height: 30px;
+        }
+        .box span {
+            margin: 5px;
+        }
+        .selected {
+            background-color: #aaa!important;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload=function () {
+            var lis=document.getElementsByTagName("li");
+            for(var i=0;i<lis.length;i++){
+                if(i%2==0){
+                    lis[i].style.backgroundColor="rgb(238,238,238)";
+                }else{
+                    lis[i].style.backgroundColor="rgb(221,221,221)";
+                }
+                lis[i].onmousemove=function () {
+                    this.className="selected";
+                }
+                lis[i].onmouseout=function () {
+                    this.className="";
+                }
+            }
+
+            console.log(i);
+        }
+    </script>
+</head>
+<body>
+  <div class="box">
+      <ul>
+          <li><span>上证指数</span><span>3641</span><span>10-5</span><span>0.16%</span></li>
+          <li><span>上证指数</span><span>3641</span><span>10-5</span><span>0.16%</span></li>
+          <li><span>上证指数</span><span>3641</span><span>10-5</span><span>0.16%</span></li>
+          <li><span>上证指数</span><span>3641</span><span>10-5</span><span>0.16%</span></li>
+          <li><span>上证指数</span><span>3641</span><span>10-5</span><span>0.16%</span></li>
+          <li><span>上证指数</span><span>3641</span><span>10-5</span><span>0.16%</span></li>
+          <li><span>上证指数</span><span>3641</span><span>10-5</span><span>0.16%</span></li>
+          <li><span>上证指数</span><span>3641</span><span>10-5</span><span>0.16%</span></li>
+          <li><span>上证指数</span><span>3641</span><span>10-5</span><span>0.16%</span></li>
+          <li><span>上证指数</span><span>3641</span><span>10-5</span><span>0.16%</span></li>
+      </ul>
+  </div>
+</body>
+</html>

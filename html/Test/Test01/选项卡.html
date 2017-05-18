@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选项卡</title>
+    <style type="text/css">
+        .box ul {
+            list-style-type: none;
+            position: absolute;
+            padding: 0;
+            margin: 0;
+            top: 0;
+
+        }
+
+        .box li {
+            float: left;
+            width: 120px;
+            text-align: center;
+            height: 50px;
+            line-height: 50px;
+            cursor: pointer;
+        }
+        .box {
+            position: relative;
+            margin: 100px auto;
+            width: 600px;
+            height: 300px;
+            padding-top: 50px;
+            border: 1px solid #ccc;
+            overflow: hidden;
+        }
+        .box div {
+            height: 300px;
+            border-top: 1px solid #ccc;
+        }
+    </style>
+    <script type="text/javascript">
+         window.onload=function () {
+           var lis=document.getElementsByClassName("box")[0].getElementsByTagName("li");
+           var divs=document.getElementsByClassName("box")[0].getElementsByTagName("div");
+           for(var i=0;i<lis.length;i++){
+               lis[i].value=i;
+               lis[i].onclick=function () {
+                   for(var j=0;j<divs.length;j++){
+                       divs[j].style.display="none";
+                   }
+                   divs[this.value].style.display="block";
+                   for(var m=0;m<lis.length;m++){
+                       lis[m].style.backgroundColor="#fff";
+                   }
+                   this.style.backgroundColor="#ccc";
+               }
+           }
+           lis[0].onclick();
+         };
+    </script>
+</head>
+<body>
+  <div class="box">
+      <ul>
+          <li>选项一</li>
+          <li>选项二</li>
+          <li>选项三</li>
+          <li>选项四</li>
+          <li>选项五</li>
+      </ul>
+      <div class="content_1">
+        miracle喜欢cherry 1
+      </div>
+      <div class="content_2">
+          miracle喜欢cherry 2
+      </div>
+      <div class="content_3">
+          miracle喜欢cherry 3
+      </div>
+      <div class="content_4">
+          miracle喜欢cherry 4
+      </div>
+      <div class="content_5">
+          miracle喜欢cherry 5
+      </div>
+  </div>
+</body>
+</html>
