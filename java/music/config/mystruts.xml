@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mystruts>
+	<package>
+		<!-- 配置请求路径，与处理action类的关系 -->
+		<!-- 
+			1. 请求路径与处理Action的关系
+			     /login = LoginAction                          login
+			            success = /index.jsp                     登陆成功(重定向)
+			            loginFaild  = /login.jsp                 登陆失败
+			
+		 -->
+		<action name="login" class="mh.cherry.login.action.LoginAction" method="execute">
+			<result name="loginSuccess" type="redirect">/index.jsp</result>
+			<result name="loginFaild">/login.jsp</result>
+			<result name="login">/WEB-INF/jsp/login.jsp</result>
+		</action>
+		
+		<action name="user" class="mh.cherry.user.action.UserAction" method="execute">
+			<result name="list">/WEB-INF/jsp/sys/user/index.jsp</result>
+		</action>
+		
+	</package>
+
+</mystruts>
