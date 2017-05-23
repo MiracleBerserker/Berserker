@@ -1,6 +1,7 @@
 package mh.cherry.user.action;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -22,7 +23,36 @@ public class UserAction{
 		req.setCharacterEncoding("utf-8");
 		List<User> userList=userService.getAll();
 		req.setAttribute("userList",userList);
-		req.getRequestDispatcher("/WEB-INF/jsp/sys/user/index.jsp").forward(req, resp);
 		return "list";
+	}
+	public String edit(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+		req.setCharacterEncoding("utf-8");
+		int id=Integer.valueOf(req.getParameter("id"));
+		User user=userService.findObjectById(id);
+		if(user==null){
+			return "error";
+		}
+		req.setAttribute("user",user);
+		return "edit";
+	}
+	public String delete(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+		req.setCharacterEncoding("utf-8");
+		int id=Integer.valueOf(req.getParameter("id"));
+		userService.delete(id);
+		return "relist";
+	}
+	public String addUI(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+		return "addUI";
+	}
+	public String add(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+		req.setCharacterEncoding("utf-8");
+         User user=new User();
+         user.setUserName(req.getParameter("username"));
+         user.setUserMail(req.getParameter("email"));
+         user.setUserPwd(req.getParameter("password"));
+         user.setUserStatus(req.getParameter("status").equals("1")?1:0);
+         user.setUserRealname(req.getParameter("realname"));
+         userService.save(user);
+		return "relist";
 	}
 }

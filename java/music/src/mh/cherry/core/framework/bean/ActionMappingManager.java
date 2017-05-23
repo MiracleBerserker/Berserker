@@ -1,5 +1,6 @@
 package mh.cherry.core.framework.bean;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -77,6 +78,12 @@ public class ActionMappingManager {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally{
+			try {
+				ins.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

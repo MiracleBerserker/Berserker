@@ -60,11 +60,11 @@ pageContext.setAttribute("basePath",request.getContextPath()+"/");
     	   <tr>
             <td>${ul.userId}</td>
             <td>${ul.userName}</td>
-            <td>${vs.count}</td>
+            <td>${ul.userRealname}</td>
             <td>${ul.userLastlogintime}</td>
             <td>
-                <a href="edit.html">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;  
-                <a href="edit.html">删除</a>                   
+                <a href="edit.action?id=${ul.userId}">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;  
+                <a href="delete.action?id=${ul.userId}">删除</a>                   
             </td>
            </tr>
     	 </c:forEach>
@@ -79,16 +79,9 @@ pageContext.setAttribute("basePath",request.getContextPath()+"/");
     $(function () {
 		$('#addnew').click(function(){
 
-				window.location.href="add.html";
+				window.location.href="addUI.action";
 		 });
     });
-	function del(id)
-	{
-		if(confirm("确定要删除吗？"))
-		{
-			var url = "index.html";
-			window.location.href=url;		
-		}
-	}
+
 </script>
 </html>

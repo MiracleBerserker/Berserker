@@ -1,19 +1,19 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+pageContext.setAttribute("basePath",request.getContextPath()+"/");
+%>
 <!DOCTYPE html>
 <html>
 <head>
     <title></title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../Css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
-    <link rel="stylesheet" type="text/css" href="../Css/style.css" />
-    <script type="text/javascript" src="../Js/jquery.js"></script>
-    <script type="text/javascript" src="../Js/jquery.sorted.js"></script>
-    <script type="text/javascript" src="../Js/bootstrap.js"></script>
-    <script type="text/javascript" src="../Js/ckform.js"></script>
-    <script type="text/javascript" src="../Js/common.js"></script>
-
- 
-
+    <link rel="stylesheet" type="text/css" href="${basePath}css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="${basePath}css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="${basePath}css/style.css" />
+    <script type="text/javascript" src="${basePath}js/jquery.js"></script>
+    <script type="text/javascript" src="${basePath}js/bootstrap.js"></script>
+    <script type="text/javascript" src="${basePath}js/ckform.js"></script>
+    <script type="text/javascript" src="${basePath}js/common.js"></script>
     <style type="text/css">
         body {
             padding-bottom: 40px;
@@ -35,23 +35,23 @@
     </style>
 </head>
 <body>
-<form action="index.html" method="post" class="definewidth m20">
+<form action="add.action" method="post" class="definewidth m20">
 <table class="table table-bordered table-hover definewidth m10">
     <tr>
         <td width="10%" class="tableleft">登录名</td>
-        <td><input type="text" name="username"/></td>
+        <td><input type="text" name="username" placeholder="登录名"/></td>
     </tr>
     <tr>
         <td class="tableleft">密码</td>
-        <td><input type="password" name="password"/></td>
+        <td><input type="password" name="password" placeholder="密码"/></td>
     </tr>
     <tr>
         <td class="tableleft">真实姓名</td>
-        <td><input type="text" name="realname"/></td>
+        <td><input type="text" name="realname" placeholder="真实姓名"/></td>
     </tr>
     <tr>
         <td class="tableleft">邮箱</td>
-        <td><input type="text" name="email"/></td>
+        <td><input type="text" name="email" placeholder="邮箱"/></td>
     </tr>
     <tr>
         <td class="tableleft">状态</td>
@@ -62,7 +62,7 @@
     </tr>
     <tr>
         <td class="tableleft">角色</td>
-        <td>{$role_checkbox}</td>
+        <td></td>
     </tr>
     <tr>
         <td class="tableleft"></td>
@@ -73,12 +73,9 @@
 </table>
 </form>
 </body>
-</html>
-<script>
-    $(function () {       
-		$('#backid').click(function(){
-				window.location.href="index.html";
-		 });
-
-    });
+<script type="text/javascript">
+ $("#backid").click(function(){
+	window.history.back();
+ });
 </script>
+</html>

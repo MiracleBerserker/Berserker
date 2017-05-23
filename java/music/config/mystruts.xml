@@ -17,6 +17,10 @@
 		
 		<action name="user" class="mh.cherry.user.action.UserAction" method="execute">
 			<result name="list">/WEB-INF/jsp/sys/user/index.jsp</result>
+			<result name="error">/WEB-INF/jsp/sys/error.jsp</result>
+			<result name="edit">/WEB-INF/jsp/sys/user/edit.jsp</result>
+			<result name="relist" type="redirect">list.action</result>
+			<result name="addUI">/WEB-INF/jsp/sys/user/addUI.jsp</result>
 		</action>
 		
 	</package>

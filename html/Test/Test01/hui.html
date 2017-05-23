@@ -1,14 +1,28 @@
 <html>
 <script>
     window.onload=function () {
-        var s=window.frames["miracle"];
-        var m=s.document.getElementsByClassName("ulradiocheck");
-        s.document.getElementById("submit_button");
-        setTimeout(hui,20000);
-        function hui() {
-            s.location.replace("https://sojump.com/jq/14375622.aspx");
-            //s.location.reload();
+
+        su();
+        function su() {
+            var s=window.frames["miracle"];
+            var m=s.document.getElementsByClassName("ulradiocheck");
+            var sub=s.document.getElementById("submit_button");
+            for(var i=0;i<m.length;i++){
+                var n=Math.floor((Math.random())*(m[i].getElementsByTagName("li").length));
+                var ss=m[i].getElementsByTagName("li")[n];
+                ss.getElementsByTagName("input")[0].checked=true;
+                //alert(ss.getElementsByTagName("input")[0]===undefined);
+                //ss.getElementsByTagName("input")[0].checked=true;
+                sub.onclick();
+                setTimeout(hui,4500);
+                setTimeout(su,3000);
+            }
+            function hui() {
+                s.location.replace("https://sojump.com/jq/14375564.aspx");
+                //s.location.reload();
+            }
         }
+
     };
 
 </script>

@@ -42,7 +42,7 @@ public class ActionServlet extends HttpServlet{
 			Object obj=clazz.newInstance();
 			Method mt=clazz.getDeclaredMethod(mname,HttpServletRequest.class,HttpServletResponse.class);
 			String tname=(String) mt.invoke(obj,req, resp);
-			if(tname!=null&&"".equals(tname)){
+			if(tname!=null&&!"".equals(tname)){
 				Result rs=am.getResults().get(tname);
 				if(rs.getType().equals("dispatcher")){
 					req.getRequestDispatcher(rs.getPage()).forward(req, resp);
@@ -50,7 +50,9 @@ public class ActionServlet extends HttpServlet{
 					resp.sendRedirect(rs.getPage());
 				}
 			}
-		} catch (Exception e) {
+		} catch (NoSuchMethodException e) {
+			req.getRequestDispatcher("/WEB-INF/jsp/sys/error.jsp").forward(req, resp);
+		}catch (Exception e){
 			e.printStackTrace();
 		}
         
