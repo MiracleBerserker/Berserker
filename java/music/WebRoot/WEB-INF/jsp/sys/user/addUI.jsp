@@ -56,7 +56,7 @@ pageContext.setAttribute("basePath",request.getContextPath()+"/");
     <tr>
         <td class="tableleft">状态</td>
         <td>
-            <input type="radio" name="status" value="1" checked/> 启用
+           <input type="radio" name="status" value="1" checked/> 启用
            <input type="radio" name="status" value="0"/> 禁用
         </td>
     </tr>

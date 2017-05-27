@@ -25,7 +25,7 @@ public class UserAction{
 		req.setAttribute("userList",userList);
 		return "list";
 	}
-	public String edit(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+	public String editUI(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		req.setCharacterEncoding("utf-8");
 		int id=Integer.valueOf(req.getParameter("id"));
 		User user=userService.findObjectById(id);
@@ -33,7 +33,20 @@ public class UserAction{
 			return "error";
 		}
 		req.setAttribute("user",user);
-		return "edit";
+		return "editUI";
+	}
+	public String edit(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+		req.setCharacterEncoding("utf-8");
+        User user=new User();
+        user.setUserName(req.getParameter("username"));
+        user.setUserMail(req.getParameter("email"));
+        user.setUserPwd(req.getParameter("password"));
+        user.setUserStatus(req.getParameter("status").equals("1")?1:0);
+        user.setUserRealname(req.getParameter("realname"));
+        user.setUserId(Integer.valueOf(req.getParameter("id")));
+        userService.update(user);
+		return "relist";
+		
 	}
 	public String delete(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		req.setCharacterEncoding("utf-8");

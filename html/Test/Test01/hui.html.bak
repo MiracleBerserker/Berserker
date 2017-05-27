@@ -18,8 +18,8 @@
             }
             setTimeout(ssd,4500);
 			sub.onclick();
-			setTimeout(hui,2500);
-            setTimeout(su,2000);
+			setTimeout(hui,4500);
+            setTimeout(su,3000);
 			
             function hui() {
                 s.location.replace("https://sojump.com/jq/14375622.aspx");

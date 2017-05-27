@@ -38,7 +38,7 @@ pageContext.setAttribute("basePath",request.getContextPath()+"/");
     </style>
 </head>
 <body>
-<form action="{:U('User/edit')}" method="post" class="definewidth m20">
+<form action="edit.action" method="post" class="definewidth m20">
 <input type="hidden" name="id" value="${user.userId}" />
     <table class="table table-bordered table-hover definewidth m10">
         <tr>
@@ -71,13 +71,12 @@ pageContext.setAttribute("basePath",request.getContextPath()+"/");
         <tr>
             <td class="tableleft"></td>
             <td>
+                <input type="hidden" name="id" value="${user.userId}" />
                 <button type="submit" class="btn btn-primary" type="button">保存</button>&nbsp;&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
             </td>
         </tr>
     </table>
 </form>
-</body>
-</html>
 <script>
     $(function () {       
 		$('#backid').click(function(){
@@ -86,3 +85,5 @@ pageContext.setAttribute("basePath",request.getContextPath()+"/");
 
     });
 </script>
+</body>
+</html>

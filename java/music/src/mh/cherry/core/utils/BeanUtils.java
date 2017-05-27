@@ -52,8 +52,10 @@ public class BeanUtils {
 		String st=null;
 		for (String str : list) {
 			sb=new StringBuilder(str);
+			if(sb.indexOf("_")!=-1){
 			int m=sb.indexOf("_");
 			sb.replace(m, m+2,String.valueOf((char)(sb.charAt(m+1)-32)));
+			}
 			st=sb.toString();
 			for(Class<?> su=obj.getClass();su!=Object.class;su=su.getSuperclass()){
 				try {

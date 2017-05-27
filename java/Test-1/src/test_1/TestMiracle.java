@@ -12,4 +12,11 @@ public class TestMiracle {
 		}
 		System.out.println(i);
 	}
+	
+	@Test
+	public void test_2(){
+		StringBuilder sb=new StringBuilder("sssss");
+		System.out.println(sb.indexOf("_"));
+	}
+	
 }

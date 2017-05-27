@@ -47,9 +47,11 @@ public class BaseDaoImpl<T> implements BaseDao<T>{
 					//自制beanutils= =  
 					for(int i=0;i<rsd.getColumnCount();i++){
 						sb=new StringBuilder(rsd.getColumnLabel(i+1));
+						if(sb.indexOf("_")!=-1){
 						int m=sb.indexOf("_");
 						char c=(char) (sb.charAt(m+1)-32);
 						sb.replace(m,m+2,String.valueOf(c));
+						}
 						BeanUtils.setField(obj,sb.toString(),rs.getObject(i+1));
 					}
 					list.add(obj);
@@ -83,9 +85,11 @@ public class BaseDaoImpl<T> implements BaseDao<T>{
 					obj=clazz.newInstance();
 					for(int i=0;i<rsd.getColumnCount();i++){
 						sb=new StringBuilder(rsd.getColumnLabel(i+1));
+						if(sb.indexOf("_")!=-1){
 						int m=sb.indexOf("_");
 						char c=(char) (sb.charAt(m+1)-32);
 						sb.replace(m,m+2,String.valueOf(c));
+						}
 						BeanUtils.setField(obj, sb.toString(),rs.getObject(i+1));
 					}
 				}

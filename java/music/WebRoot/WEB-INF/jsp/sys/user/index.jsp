@@ -63,7 +63,7 @@ pageContext.setAttribute("basePath",request.getContextPath()+"/");
             <td>${ul.userRealname}</td>
             <td>${ul.userLastlogintime}</td>
             <td>
-                <a href="edit.action?id=${ul.userId}">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;  
+                <a href="editUI.action?id=${ul.userId}">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;  
                 <a href="delete.action?id=${ul.userId}">删除</a>                   
             </td>
            </tr>
