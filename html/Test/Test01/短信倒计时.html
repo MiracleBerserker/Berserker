@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <input type="text" />
+  <button >点击发送短信</button>
+  <script>
+      var n=10;
+      var s=new String(55);
+      var nn=new Number();
+      console.log(n.toString(2));
+      console.log(s);
+      var count =10;
+      var timer=null;
+      document.getElementsByTagName("button")[0].onclick=function () {
+
+          if(count!=10){
+              alert("请在"+count+"秒之后重新发送");
+          }else{
+          clearInterval(timer);
+          var that=this;
+          timer=setInterval(st,1000);
+          function st(){
+              if(count>-1){
+                  that.innerHTML="还剩"+count--+"秒";
+              }else{
+                  clearInterval(timer);
+                  count=10;
+                  that.innerHTML="点击重新发送";
+              }
+
+          }
+         }
+      };
+  </script>
+</body>
+</html>

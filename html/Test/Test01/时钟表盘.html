@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .clock {
+            width: 600px;
+            height: 600px;
+            margin: 100px auto;
+            background:url("images/clock.jpg") no-repeat center center;
+            position: relative;
+
+        }
+        .h {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background:url("images/hour.png") no-repeat center center;
+        }
+        .m {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url("images/minute.png") no-repeat center center;
+        }
+        .s {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url("images/second.png") no-repeat center center;
+            -webkit-transform: rotate(50deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="clock">
+        <div class="h"></div>
+        <div class="m"></div>
+        <div class="s"></div>
+    </div>
+    <script>
+        var s=document.getElementsByClassName("s")[0];
+        var m=document.getElementsByClassName("m")[0];
+        var h=document.getElementsByClassName("h")[0];
+        function start(){
+            var d=new Date();
+            var ms=d.getMilliseconds();
+            var ss=d.getSeconds()+ms/1000;
+            var mm=d.getMinutes()+ss/60;
+            var hh=d.getHours()+mm/60;
+            s.style.webkitTransform="rotate("+ss*6+"deg)";
+            m.style.webkitTransform="rotate("+mm*6+"deg)";
+            h.style.webkitTransform="rotate("+hh*30+"deg)";
+        }
+        setInterval(start,100);
+    </script>
+</body>
+</html>

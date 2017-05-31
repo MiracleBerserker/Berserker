@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+  <input type="text" id="u"/>
+  <button id="b1">转换成uri编码</button>
+  <input type="text" id="su">
+  <button id="b2">转化成</button>
+  <script>
+      document.getElementById("b1").onclick=function () {
+          var i1=document.getElementById("u").value;
+          document.getElementById("su").value=encodeURIComponent(i1);
+          document.getElementById("u").value="";
+      };
+      document.getElementById("b2").onclick=function () {
+          var i2=document.getElementById("su").value;
+          document.getElementById("u").value=decodeURIComponent(i2);
+          document.getElementById("su").value="";
+      };
+      var ss="asdfg";
+      console.log(ss.toUpperCase());
+  </script>
+</body>
+</html>

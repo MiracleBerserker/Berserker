@@ -26,6 +26,7 @@
 		
 		<action name="news" class="mh.cherry.news.action.NewsAction" method="execute">
 		  <result name="list">/WEB-INF/jsp/sys/news/index.jsp</result>
+		  <result name="editUI">/WEB-INF/jsp/sys/news/editUI.jsp</result>
 		</action>
 	</package>
 

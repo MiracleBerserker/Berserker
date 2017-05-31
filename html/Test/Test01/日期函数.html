@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>日期函数</title>
+    <style>
+        .box {
+            width: 150px;
+            height: 180px;
+            margin: 100px auto;
+            background-color: #01AAED;
+        }
+       .box p {
+           height: 60px;
+           text-align: center;
+           line-height: 60px;
+           color: #fff;
+       }
+        .box span {
+            display: block;
+            width: 75px;
+            height: 75px;
+            text-align: center;
+            line-height: 75px;
+            background-color: #009688;
+            margin: 0 auto;
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+  <div class="box">
+      <p></p>
+      <span></span>
+  </div>
+  <script>
+      var box=document.getElementsByClassName("box")[0];
+      var p=box.getElementsByTagName("p")[0];
+      var sp=box.getElementsByTagName("span")[0];
+      setInterval("fsh()",1000);
+      function fsh(){
+          var d=new Date;
+          p.innerHTML=d.getFullYear()+"年"+(d.getMonth()+1)+"月"+(d.getDay()+1)+"日";
+          sp.innerHTML=d.getSeconds();
+      }
+  </script>
+</body>
+</html>

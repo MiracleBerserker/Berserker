@@ -76,7 +76,7 @@ public class BaseDaoImpl<T> implements BaseDao<T>{
 		StringBuilder sb=null;
 		try {
 			con=JDBCUtils.getConnection();
-			pst=con.prepareStatement("SELECT * FROM "+clazz.getSimpleName()+" WHERE USER_ID=?");
+			pst=con.prepareStatement("SELECT * FROM "+clazz.getSimpleName()+" WHERE "+clazz.getSimpleName()+"_ID=?");
 			pst.setObject(1, id);
 			if(pst.execute()){
 				rs=pst.getResultSet();

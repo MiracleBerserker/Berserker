@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>左右切换图</title>
+    <style>
+        /* 清除自带的外边距和内边距*/
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        /*清除列表默认样式*/
+        ol li,ul li {
+            list-style-type: none;
+        }
+        /*清楚图片自带的3px底边距*/
+        img {
+            vertical-align: top;
+        }
+        ol li {
+            float: left;
+            width: 18px;
+            height: 18px;
+            background-color: #333;
+            margin-left: 10px;
+            line-height: 18px;
+            text-align: center;
+            cursor: pointer;
+        }
+        ol {
+            position: absolute;
+            color: #fff;
+            bottom: 10px;
+            left: 50%;
+            margin-left: -73px;
+        }
+        .slider {
+            width: 520px;
+            height: 280px;
+            background-color: pink;
+            margin: 100px auto;
+            border: 1px solid #ccc;
+            overflow: hidden;
+            position: relative;
+        }
+        .slider span {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            font-size: 30px;
+            font-family: '黑体';
+            background-color: rgba(0,0,0,0.3);
+            text-align: center;
+            line-height: 40px;
+            color: #fff;
+            cursor: pointer;
+        }
+        .slider .left {
+            top: 50%;
+            margin-top: -20px;
+            left: 5px;
+        }
+        .slider .right {
+            top: 50%;
+            margin-top: -20px;
+            right: 5px;
+        }
+        /*设置伪类动画*/
+        .slider span:hover {
+            background-color: rgba(0,0,0,0.5);
+        }
+        .slider ul {
+            position: absolute;
+            width: 500%;
+            height: 280px;
+            left: 0;
+            top: 0;
+        }
+        .slider ul li {
+            float: left;
+        }
+        .slider .current {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="slider">
+    <ul>
+        <li><img src="images/1.jpg" ></li>
+        <li><img src="images/2.jpg" ></li>
+        <li><img src="images/3.jpg" ></li>
+        <li><img src="images/4.jpg" ></li>
+        <li><img src="images/5.jpg" ></li>
+    </ul>
+    <div id="arrow">
+        <span class="left"><</span>
+        <span class="right">></span>
+    </div>
+    <ol>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ol>
+</div>
+<script>
+    var lis=document.getElementsByClassName("slider")[0].getElementsByTagName("ol")[0].getElementsByTagName("li");
+    var ul=document.getElementsByClassName("slider")[0].getElementsByTagName("ul")[0];
+    var target=0;
+    var leader=0;
+    for(i=0;i<lis.length;i++){
+        lis[i].index=i;
+      lis[i].onmouseover=function () {
+          for(j=0;j<lis.length;j++){
+              lis[j].className="";
+          }
+          this.className="current";
+          target=-this.index*520;
+      }
+    }
+    setInterval(function () {
+        leader=leader+(target-leader)/10;
+        ul.style.left=leader+"px";
+    },30);
+
+    document.getElementsByClassName("left")[0].onclick=function () {
+        if(target>-2080){
+        target-=520;
+        for(j=0;j<lis.length;j++){
+            lis[j].className="";
+        }
+        lis[-target/520].className="current";
+        }
+    };
+    document.getElementsByClassName("right")[0].onclick=function () {
+      if(target<0){
+        target+=520;
+        for(j=0;j<lis.length;j++){
+            lis[j].className="";
+        }
+        lis[-target/520].className="current";
+      }
+    }
+
+</script>
+</body>
+</html>

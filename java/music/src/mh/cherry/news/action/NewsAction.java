@@ -20,4 +20,10 @@ public class NewsAction {
 		req.setAttribute("newses", newses);
 		return "list";
 	}
+	public String editUI(HttpServletRequest req,HttpServletResponse resp) throws Exception{
+		req.setCharacterEncoding("utf-8");
+		News news=newService.findObjectById(Integer.valueOf(req.getParameter("id")));
+		req.setAttribute("news",news);
+		return "editUI";
+	}
 }

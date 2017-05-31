@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        img {
+            vertical-align: top;
+        }
+        ul,ol {
+          list-style-type: none;
+        }
+        ul li {
+            float: left;
+        }
+
+        ol li {
+            display: block;
+            float: left;
+            width: 18px;
+            height: 18px;
+            margin-left: 10px;
+            background-color: #fff;
+            line-height: 18px;
+            text-align: center;
+        }
+        ol {
+            position: absolute;
+            left: 50%;
+            margin-left: -80px;
+            bottom: 10px;
+        }
+        .box {
+            width: 490px;
+            height: 170px;
+            background-color: pink;
+            margin: 100px auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .box ul {
+            width: 1000%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .current {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <ul>
+        <li><img src="images/011.jpg" ></li>
+        <li><img src="images/022.jpg" ></li>
+        <li><img src="images/033.jpg" ></li>
+        <li><img src="images/044.jpg" ></li>
+        <li><img src="images/055.jpg" ></li>
+        <li><img src="images/011.jpg" ></li>
+        <li><img src="images/022.jpg" ></li>
+        <li><img src="images/033.jpg" ></li>
+        <li><img src="images/044.jpg" ></li>
+        <li><img src="images/055.jpg" ></li>
+    </ul>
+    <ol>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ol>
+</div>
+<script>
+    var ull=document.getElementsByClassName("box")[0].getElementsByTagName("ul")[0];
+    var lis=document.getElementsByClassName("box")[0].getElementsByTagName("ol")[0].getElementsByTagName("li");
+    var target=0;
+    var leader=0;
+    for(i=0;i<lis.length;i++){
+        lis[i].index=i;
+        lis[i].onmouseover=function () {
+            for(j=0;j<lis.length;j++){
+                lis[j].className="";
+            }
+            this.className="current";
+            target=-this.index*490;
+        }
+    }
+ setInterval(function () {
+     leader=leader+(target-leader)/10;
+     ull.style.left=leader+"px";
+ },30);
+
+
+</script>
+</body>
+</html>
