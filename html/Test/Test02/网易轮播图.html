@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网易轮播图</title>
+    <style>
+        .box {
+            width: 310px;
+            height: 265px;
+            position: relative;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+        .slider {
+            width: 310px;
+            height: 220px;
+            position: relative;
+            overflow: hidden;
+        }
+        .slider_points {
+            width: 310px;
+            height: 24px;
+            padding-top: 5px;
+            text-align: center;
+        }
+        .slider_point {
+           display: inline-block;
+            width: 24px;
+            height: 20px;
+            margin: 0 5px;
+            background: url("images_3/icon.png") no-repeat -24px -782px;
+            text-indent: -50em;
+            cursor: pointer;
+        }
+        .current {
+            background: url("images_3/icon.png") no-repeat -24px -762px;
+        }
+        .slider div {
+            width: 310px;
+            height: 220px;
+            position: absolute;
+            top: 0;
+        }
+        .prev {
+            position: absolute;
+            width: 30px;
+            height: 35px;
+            background: url("images_3/icon.png") no-repeat 6px top;
+            top: 50%;
+            left: 0;
+            margin-top: -35px;
+            cursor: pointer;
+        }
+        .next {
+            position: absolute;
+            width: 30px;
+            height: 35px;
+            background: url("images_3/icon.png") no-repeat -6px -44px;
+            top: 50%;
+            right: 0;
+            margin-top: -35px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="slider">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="slider_points">
+        <span class="prev"></span>
+        <span class="next"></span>
+    </div>
+</div>
+</body>
+<script>
+        var divs=document.getElementsByClassName("slider")[0].getElementsByTagName("div");
+        var spp=document.getElementsByClassName("slider_points")[0];
+        for(var i=0;i<divs.length;i++){
+            divs[i].style.background="url(images_3/"+(i+1)+".jpg) no-repeat center";
+            var sp=document.createElement("span");
+            sp.className="slider_point";
+            sp.innerHTML=divs.length-1-i;
+            spp.insertBefore(sp,spp.children[1]);
+            if(i===0){
+                divs[i].style.left=0;
+            }else {
+                divs[i].style.left=-310+"px";
+            }
+            if(i===divs.length-1){
+                sp.className="slider_point current";
+            }
+        }
+//封装获取属性的函数
+    function getStyle(obj,attr){
+            if(obj.currentStyle){
+                return obj.currentStyle[attr];
+            }else {
+                return window.getComputedStyle(obj,null)[attr];
+            }
+    }
+//封装多属性的动画
+    function animate(obj,json,fn) {
+        clearInterval(obj.timer);
+        obj.timer=setInterval(function () {
+            var flag=true;
+            for(attr in json){
+                var current=0;
+                if(attr==="opacity"){
+                    current=parseInt(getStyle(obj,attr))*100||0;
+                }else {
+                    current=parseInt(getStyle(obj,attr));
+                }
+                var step=(json[attr]-current)/10;
+                step=step>0?Math.ceil(step):Math.floor(step);
+                if(attr==="opacity"){
+                    if("opacity" in obj.style){
+                        obj.style[attr]=(current+step)/100;
+                    }else{
+                        obj.style.filter="alpha(opacity = "+(current+step)*10+")";
+                    }
+                }else if(attr==="zIndex"){
+                    obj.style[attr]=json[attr];
+                }else {
+                    obj.style[attr]=current+step+"px";
+                }
+                if(current!=json[attr]){
+                    flag=false;
+                }
+                if(flag){
+                    clearInterval(obj.timer);
+                    if(fn){
+                        fn();
+                    }
+                }
+            }
+        },15)
+    }
+
+    //配置轮播图动画
+    var spans=spp.children;
+    var iNow=0;
+    for(var span in spans){
+        spans[span].onclick=function () {
+            if(this.className==="prev"){
+                animate(divs[iNow],{left: 310});
+                --iNow<0?iNow=divs.length-1:iNow;
+                divs[iNow].style.left=-310+"px";
+                animate(divs[iNow],{left: 0});
+                setSpan();
+            }else if(this.className==="next"){
+                animate(divs[iNow],{left: -310});
+                ++iNow>divs.length-1?iNow=0:iNow;
+                divs[iNow].style.left=310+"px";
+                animate(divs[iNow],{left: 0});
+                setSpan();
+            }else{
+                var n=parseInt(this.innerHTML);
+                if( n>iNow){
+                    animate(divs[iNow],{left: -310});
+                    divs[n].style.left=310+"px";
+                }else if(n<iNow){
+                    animate(divs[iNow],{left: 310});
+                    divs[n].style.left=-310+"px";
+                }
+                iNow=n;
+                animate(divs[iNow],{left: 0});
+                setSpan();
+            }
+        }
+    }
+
+    //设置span的颜色
+    function setSpan() {
+        for(var i=1;i<spans.length-1;i++){
+            spans[i].className="slider_point";
+        }
+        spans[iNow+1].className="slider_point current";
+    }
+var timer=null;
+function autoplay(){
+    animate(divs[iNow],{left: 310});
+    ++iNow>divs.length-1?iNow=0:iNow;
+    divs[iNow].style.left=-310+"px";
+    animate(divs[iNow],{left: 0});
+    setSpan();
+}
+timer=setInterval(autoplay,2000);
+document.getElementsByClassName("box")[0].onmouseout=function () {
+    clearInterval(timer);
+};
+document.getElementsByClassName("box")[0].onmouseover=function () {
+    clearInterval(timer);
+    timer=setInterval(autoplay,2000);
+}
+</script>
+</html>

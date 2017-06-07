@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>下拉菜单</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            list-style-type: none;
+        }
+        .box {
+            width: 330px;
+            height: 30px;
+            margin: 100px auto;
+            background: url("images_4/bg.jpg") no-repeat center;
+            padding-left: 10px;
+            line-height: 30px;
+            text-align: center;
+        }
+        .box ul li {
+            cursor: pointer;
+            float: left;
+            margin-right: 10px;
+            width: 100px;
+            height: 30px;
+            background: url("images_4/libg.jpg") no-repeat;
+        }
+        ul li ul {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+  <div class="box">
+      <ul>
+          <li >一级菜单
+              <ul class="list">
+                  <li>二级菜单</li>
+                  <li>三级菜单</li>
+                  <li>四级菜单</li>
+              </ul>
+          </li>
+          <li>一级菜单
+              <ul class="list">
+                  <li>二级菜单</li>
+                  <li>三级菜单</li>
+                  <li>四级菜单</li>
+              </ul>
+          </li>
+          <li>一级菜单
+              <ul class="list">
+                  <li>二级菜单</li>
+                  <li>三级菜单</li>
+                  <li>四级菜单</li>
+              </ul>
+          </li>
+      </ul>
+  </div>
+</body>
+<script>
+    var uls=document.getElementsByClassName("box")[0].getElementsByClassName("list");
+    for(var i=0;i<uls.length;i++){
+        uls[i].parentNode.onmouseover=function () {
+            this.getElementsByTagName("ul")[0].style.display="block";
+        };
+        uls[i].parentNode.onmouseout=function () {
+          this.getElementsByTagName("ul")[0].style.display="none";
+        }
+    }
+</script>
+</html>

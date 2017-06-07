@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自制滑动条</title>
+    <style>
+        .box {
+            position: relative;
+            width: 300px;
+            height: 500px;
+            margin: 100px auto;
+            border: 1px solid red;
+            overflow: hidden;
+        }
+        .scroll {
+           position: absolute;
+            height: 100%;
+            width: 18px;
+            background-color: #ccc;
+            top: 0;
+            right: 0;
+        }
+        .contents {
+            position: absolute;
+            left: 0;
+            padding: 5px 18px 5px 5px;
+            text-indent: 2em;
+        }
+        .bar {
+            position: absolute;
+            height: 100px;
+            width: 100%;
+            background-color: red;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="contents">
+        文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分
+        文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分
+        文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分
+        文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分
+        文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分
+        文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内     文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分
+        文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分
+        文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分文字内容部分
+    </div>
+    <div class="scroll">
+        <span class="bar"></span>
+    </div>
+</div>
+</body>
+<script>
+    var contents=document.getElementsByClassName("contents")[0];
+    var bar=document.getElementsByClassName("bar")[0];
+    var scroll=document.getElementsByClassName("scroll")[0];
+    bar.style.height=scroll.offsetHeight/contents.offsetHeight*scroll.offsetHeight+"px";
+    startScroll(bar,contents);
+    function startScroll(obj,contents){
+         obj.onmousedown=function (event) {
+             event=event||window.event;
+             var by=event.clientY-this.offsetTop;
+             var that=this;
+             document.onmousemove=function (event) {
+                 event=event||window.event;
+                 var rby=event.clientY-by;
+                 var cby=(contents.offsetHeight-scroll.offsetHeight)/(scroll.offsetHeight-bar.offsetHeight)*rby;
+                 if(rby<0){
+                     rby=0;
+                 }else if(rby>scroll.offsetHeight-that.offsetHeight){
+                     rby=scroll.offsetHeight-that.offsetHeight;
+                 }else{
+                     contents.style.top="-"+cby+"px";
+                 }
+                 that.style.top=rby+"px";
+                 window.getSelection?window.getSelection().removeAllRanges():document.getSelection().empty();
+             };
+         };
+     document.onmouseup=function () {
+         document.onmousemove=null;
+     }
+    }
+</script>
+</html>

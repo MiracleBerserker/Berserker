@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>旋转木马</title>
+    <style>
+        * {margin: 0;padding: 0;}
+        li {
+            list-style-type: none;
+            position: absolute;
+        }
+        img {
+            vertical-align: top;
+            width: 100%;
+        }
+        .box {
+            width: 1200px;
+            height: 500px;
+            margin: 100px auto;
+        }
+        .slider {
+            width: 1200px;
+            height: 500px;
+            position: relative;
+        }
+        .slider ul li {
+            position: absolute;
+            left: 200px;
+            top: 0;
+            cursor: pointer;
+        }
+        .arrow {
+            position: relative;
+            opacity: 1;
+            z-index: 100;
+        }
+        .prev,.next {
+            width: 76px;
+            height: 112px;
+            position: absolute;
+            top: 50%;
+            margin-top: -56px;
+            z-index: 99;
+            background: url("images_4/prev.png") no-repeat;
+        }
+       .next {
+            background: url("images_4/next.png") no-repeat;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+  <div class="box">
+      <div class="slider">
+          <ul >
+              <li><a href="#"><img src="images_4/slidepic1.jpg" ></a></li>
+              <li><a href="#"><img src="images_4/slidepic2.jpg" ></a></li>
+              <li><a href="#"><img src="images_4/slidepic3.jpg" ></a></li>
+              <li><a href="#"><img src="images_4/slidepic4.jpg" ></a></li>
+              <li><a href="#"><img src="images_4/slidepic5.jpg" ></a></li>
+          </ul>
+          <div class="arrow">
+              <a href="javascript:;" class="prev"></a>
+              <a href="javascript:;" class="next"></a>
+          </div>
+      </div>
+  </div>
+</body>
+<script>
+    //获取对应的属性
+    function getStyle(obj,attr) {
+        if(obj.currentStyle){
+            return obj.currentStyle[attr];
+        }else{
+            return window.getComputedStyle(obj,null)[attr];
+        }
+    }
+    //封装3个属性的匀速运动动画
+    function animate(obj,json,fn) {
+        clearInterval(obj.timer);
+        obj.timer=setInterval(function () {
+            var flag=true;
+            for(attr in json) {
+                var current = 0;
+                if (attr == "opacity") {
+                    current = Math.round(parseInt(getStyle(obj, attr) * 100)) || 0;
+                } else {
+                    current = parseInt(getStyle(obj, attr));
+                }
+                var step = (json[attr] - current) / 10;
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                if (attr == "opacity") {
+                    if ("opacity" in obj.style) {
+                        obj.style[attr] = (current + step) / 100;
+                    } else {
+                        obj.style.filter = "alpha(opacity=" + (current + step) * 10 + ")";
+                    }
+                } else if (attr == "zIndex") {
+                    obj.style[attr] = json[attr];
+                } else {
+                    obj.style[attr] = current + step + "px";
+                }
+                if (current != json[attr]) {
+                    flag = false;
+                }
+            }
+                if(flag){
+                    clearInterval(obj.timer);
+                    if(fn){
+                        fn();
+                    }
+                }
+
+        },10)
+    }
+
+    var jso=[
+        {   //  1
+            width:400,
+            top:20,
+            left:50,
+            opacity:20,
+            z:2
+        },
+        {  // 2
+            width:600,
+            top:70,
+            left:0,
+            opacity:80,
+            z:3
+        },
+        {   // 3
+            width:800,
+            top:100,
+            left:200,
+            opacity:100,
+            z:4
+        },
+        {  // 4
+            width:600,
+            top:70,
+            left:600,
+            opacity:80,
+            z:3
+        },
+        {   //5
+            width:400,
+            top:20,
+            left:750,
+            opacity:20,
+            z:2
+        }
+    ];
+    var lis=document.getElementsByClassName("slider")[0].getElementsByTagName("li");
+    var as=document.getElementsByClassName("arrow")[0].getElementsByTagName("a");
+//    for(var i=0;i<lis.length;i++){
+//       lis[i].style.width=jso[i].width==0?0:jso[i].width+"px";
+//       lis[i].style.top=jso[i].top==0?0:jso[i].top+"px";
+//       lis[i].style.left=jso[i].left==0?0:jso[i].left+"px";
+//       lis[i].style.opacity=jso[i].opacity/100;
+//       lis[i].style.zIndex=jso[i].z;
+//    }
+    change();
+    var jieliu=true;
+    for(var m=0;m<as.length;m++){
+        as[m].onclick=function () {
+            if(this.className==="prev"){
+                if(jieliu===true){
+                    change(false);
+                    jieliu=false;
+                }
+            }else{
+                if(jieliu===true){
+                    change(true);
+                    jieliu=false;
+                }
+            }
+        }
+    }
+
+    function change(flag){
+        if(flag){
+            jso.unshift(jso.pop());
+        }else{
+            jso.push(jso.shift());
+        }
+        for(var q=0;q<lis.length;q++){
+            animate(lis[q],{
+                width: jso[q].width,
+                top: jso[q].top,
+                left: jso[q].left,
+                opacity:jso[q].opacity,
+                zIndex:jso[q].z
+            },function () {
+                jieliu=true;
+            })
+        }
+    }
+</script>
+</html>

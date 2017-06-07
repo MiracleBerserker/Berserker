@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>求鼠标在盒子里面的坐标</title>
+    <style>
+        .box {
+            margin: 100px auto;
+            width: 400px;
+            height: 400px;
+            background-color: pink;
+        }
+        .box span {
+            display: block;
+            font-size: 30px;
+        }
+        .box i {
+            font-style: normal;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+  <div class="box">
+      <span>x:<i id="x"></i></span>
+      <span>y:<i id="y"></i></span>
+  </div>
+</body>
+<script>
+    var box=document.getElementsByClassName("box")[0];
+    var x=document.getElementById("x");
+    var y=document.getElementById("y");
+    box.onmousemove=function (event) {
+          event =event||window.event;
+          x.innerHTML=event.clientX-box.offsetLeft;
+          y.innerHTML=event.clientY-box.offsetTop;
+    };
+
+</script>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>侧边屏幕滑动效果</title>
+    <style>
+        * {margin: 0; padding: 0;}
+        html,body {
+            width: 100%;
+            height: 100%;
+        }
+        ol {
+            position: fixed;
+            width: 50px;
+            left: 5%;
+            top: 22%;
+        }
+        ol li {
+
+            list-style-type: none;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            float: left;
+            cursor: pointer;
+            border: 1px solid #333;
+            margin-bottom: -1px;
+        }
+        ul {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        ul li {
+            list-style-type: none;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+ <ul>
+    <li style="background-color: pink;">首页</li>
+    <li style="background-color: purple;">关注</li>
+    <li style="background-color: orange;">动态</li>
+    <li style="background-color: blue;">风格</li>
+    <li style="background-color: green;">作品</li>
+ </ul>
+  <ol>
+      <li style="background-color: pink;">首页</li>
+      <li style="background-color: purple;">关注</li>
+      <li style="background-color: orange;">动态</li>
+      <li style="background-color: blue;">风格</li>
+      <li style="background-color: green;">作品</li>
+  </ol>
+
+</body>
+<script>
+    var olis=document.getElementsByTagName("ol")[0].getElementsByTagName("li");
+    var ulis=document.getElementsByTagName("ul")[0].getElementsByTagName("li");
+    var target=0;
+    var leader=0;
+    var timer=null;
+    for(var i=0;i<olis.length;i++){
+        olis[i].index=i;
+        olis[i].onclick=function () {
+            target=ulis[this.index].offsetTop;
+            clearInterval(timer);
+            timer=setInterval(function () {
+                leader=leader+(target-leader)/10;
+//                window.scrollTo(0,leader); 方案一
+                document.getElementsByTagName("ul")[0].style.top=-leader+"px"; //方案二
+            },30)
+        }
+    }
+    window.onscroll=function () {
+        console.log(window.scrollY);
+    }
+</script>
+</html>

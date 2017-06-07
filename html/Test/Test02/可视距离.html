@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    function ke(){
+    if(window.innerHeight!=null){
+        return{
+            width: window.innerWidth,
+            height: window.innerHeight
+        }
+     }else if(document.compatMode=="CSS1Compat"){
+        return{
+            width: document.documentElement.clientWidth,
+            height: document.documentElement.clientHeight
+        }
+    }else {
+         return{
+             width: document.body.clientWidth,
+             height: document.body.clientHeight
+         }
+    }
+   }
+   console.log("width: "+ke().width);
+   console.log("height: "+ke().height);
+</script>
+</html>

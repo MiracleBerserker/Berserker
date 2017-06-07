@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>根据窗口大小改变颜色</title>
+</head>
+<body>
+
+</body>
+<script>
+    //封装获取可视化区域大小的函数
+    function getke(){
+        if(window.innerWidth!=null){
+            return{
+                width: window.innerWidth,
+                height: window.innerHeight
+            }
+        }else if(document.compatMode=="CSS1Compat"){
+            return{
+                width: document.documentElement.clientWidth,
+                height: document.documentElement.clientHeight
+            }
+        }else {
+            return{
+                width: document.body.clientWidth,
+                height: document.body.clientHeight
+            }
+        }
+    }
+    function recolor() {
+        var size=getke().width;
+        if(size>960){
+           document.body.style.backgroundColor="red";
+        }else if(size>600){
+            document.body.style.backgroundColor="#ccc";
+        }else{
+            document.body.style.backgroundColor="#333";
+        }
+    }
+    recolor();
+    window.onresize=recolor;
+</script>
+</html>

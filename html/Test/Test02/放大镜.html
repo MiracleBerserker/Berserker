@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>放大镜</title>
+    <style>
+        .small {
+            width: 350px;
+            height: 350px;
+            border: 1px solid #ccc;
+            margin: 100px auto;
+            background: url("images/001.jpg") no-repeat center ;
+            position: relative;
+        }
+        .msk {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: rgba(255,255,0,0.4);
+            display: none;
+        }
+        .big {
+            width: 452px;
+            height: 452px;
+            border: 1px solid #ccc;
+            overflow: hidden;
+            position: absolute;
+            top: 100px;
+            left: 60%;
+            display: none;
+        }
+        .big img {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+  <div class="small">
+      <span class="msk"></span>
+  </div>
+  <div class="big">
+      <img src="images/0001.jpg">
+  </div>
+</body>
+<script>
+    var msk=document.getElementsByClassName("msk")[0];
+    var big=document.getElementsByClassName("big")[0].getElementsByTagName("img")[0];
+    var samll=document.getElementsByClassName("small")[0];
+    samll.onmouseover=function () {
+        msk.style.display="block";
+        big.parentNode.style.display="block";
+    };
+    samll.onmouseout=function () {
+        msk.style.display="none";
+        big.parentNode.style.display="none";
+    };
+    var x=0;
+    var y=0;
+    samll.onmousemove=function (event) {
+        event=event||window.event;
+        x=event.clientX - this.offsetLeft - msk.offsetWidth/2;
+        y=event.clientY - this.offsetTop - msk.offsetHeight/2;
+        if(x<0){
+            x=0;
+        }else if(x>samll.offsetWidth-msk.offsetWidth){
+            x=samll.offsetWidth-msk.offsetWidth;
+        }
+        if(y<0){
+            y=0;
+        }else if(y>samll.offsetHeight-msk.offsetHeight){
+            y=samll.offsetHeight-msk.offsetHeight;
+        }
+        msk.style.left=x+"px";
+        msk.style.top=y+"px";
+        big.style.left=-x*big.offsetWidth/samll.offsetWidth/2+"px";
+        big.style.top=-y*big.offsetHeight/samll.offsetHeight/2+"px";
+    }
+</script>
+</html>

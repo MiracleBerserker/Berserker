@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            height: 3000px;
+        }
+    </style>
+</head>
+<body>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</body>
+<script>
+    var spans=document.getElementsByTagName("span");
+
+    function getke() {
+        if(window.innerHTML){
+            return {
+                width: window.innerHTML,
+                height: window.innerHeight
+        }
+        }else {
+            return {
+                width: document.documentElement.clientWidth,
+                height: document.documentElement.clientHeight
+            }
+        }
+    }
+
+    function getsc() {
+        if(window.pageXOffset){
+            return {
+                width: window.pageXOffset,
+                height: window.pageYOffset
+            }
+
+        }else{
+            return {
+                width: document.documentElement.scrollWidth,
+                height: document.documentElement.scrollHeight
+            }
+        }
+    }
+   window.onresize=function () {
+       spans[0].innerHTML="可视化区域宽度: "+getke().width;
+       spans[1].innerHTML="可视化区域高度: "+getke().height;
+       spans[2].innerHTML="包括卷曲部分宽度: "+getsc().width;
+       spans[3].innerHTML="包括卷曲部分高度: "+getsc().height;
+   };
+   window.onscroll=function () {
+       spans[0].innerHTML="可视化区域宽度: "+getke().width;
+       spans[1].innerHTML="可视化区域高度: "+getke().height;
+       spans[2].innerHTML="包括卷曲部分宽度: "+getsc().width;
+       spans[3].innerHTML="包括卷曲部分高度: "+getsc().height;
+   };
+</script>
+</html>

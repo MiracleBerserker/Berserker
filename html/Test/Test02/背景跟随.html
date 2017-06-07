@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>背景跟随</title>
+    <style>
+        * { margin: 0; padding: 0;}
+        ul li {
+            list-style-type: none;
+            float: left;
+            width: 83px;
+            height: 42px;
+            line-height: 42px;
+            text-align: center;
+            cursor: pointer;
+        }
+        ul {
+            position: absolute;
+        }
+        body {
+            background-color: #333;
+        }
+        .box {
+            width: 800px;
+            height: 42px;
+            background: url("images/rss.png") no-repeat right center #fff;
+            border-radius: 5px;
+            margin: 100px auto;
+            position: relative;
+        }
+        .box span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 83px;
+            height: 42px;
+            background: url("images/cloud.gif") no-repeat center center;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <span></span>
+    <ul>
+        <li>首页新闻</li>
+        <li>师资力量</li>
+        <li>活动策划</li>
+        <li>企业文化</li>
+        <li>招聘信息</li>
+        <li>公司简介</li>
+        <li>上海校区</li>
+        <li>广州校区</li>
+    </ul>
+
+</div>
+</body>
+<script>
+    var lis=document.getElementsByClassName("box")[0].getElementsByTagName("li");
+    var sp=document.getElementsByClassName("box")[0].getElementsByTagName("span")[0];
+    var target=0;
+    var leader=0;
+    var current=0;
+    for(var i=0;i<lis.length;i++){
+        lis[i].index=i;
+        lis[i].onmouseover=function () {
+            target=this.index*83;
+        };
+        lis[i].onclick=function () {
+            current=this.index*83;
+        };
+        lis[i].onmouseout=function () {
+            target=current;
+        }
+    }
+    //延迟移动动画
+    setInterval(function () {
+        leader=leader+(target-leader)/10;
+        sp.style.left=leader+"px";
+    },10)
+</script>
+</html>

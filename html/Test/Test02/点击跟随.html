@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击跟随</title>
+    <style>
+        img {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<img src="images/img.jpg" alt="我是超人">
+</body>
+<script>
+    var img=document.getElementsByTagName("img")[0];
+    var timgX=0;
+    var timgY=0;
+    var imgX=0;
+    var imgY=0;
+    document.onclick=function (event) {
+        event=event||window.event;
+        timgX=event.clientX - img.offsetWidth/2;
+        timgY=event.clientY - img.offsetHeight/2;
+    };
+    //延迟移动
+    setInterval(function () {
+        imgX=imgX+(timgX-imgX)/10;
+        imgY=imgY+(timgY-imgY)/10;
+        img.style.left=imgX+"px";
+        img.style.top=imgY+"px";
+    },10);
+
+</script>
+</html>

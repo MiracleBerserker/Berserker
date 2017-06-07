@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拖动的进度条</title>
+    <style>
+        .scroll {
+            margin: 100px auto;
+            position: relative;
+            width: 480px;
+            height: 8px;
+            background-color: #ccc;
+        }
+        .sq {
+            position: absolute;
+            width: 10px;
+            height: 22px;
+            background-color: #369;
+            top: -7px;
+            left: 0;
+            cursor: pointer;
+        }
+        .msk {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 8px;
+            width: 0;
+            background-color: #369;
+        }
+        .print {
+            position: absolute;
+            top: -38px;
+            left: 45%;
+            font-family: "Adobe 楷体 Std R";
+            font-size: 25px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+  <div class="scroll">
+      <span class="print">0%</span>
+      <span class="sq"></span>
+      <span class="msk"></span>
+  </div>
+</body>
+<script>
+    var scroll=document.getElementsByClassName("scroll")[0];
+    var sq=document.getElementsByClassName("sq")[0];
+    var msk=document.getElementsByClassName("msk")[0];
+    var print=document.getElementsByClassName("print")[0];
+    var x=0;
+    sq.onmousedown=function (event) {
+        event=event||window.event;
+        leftx=event.clientX-this.offsetLeft;
+        document.onmousemove=function (event) {
+            event=event||window.event;
+            x=event.clientX-leftx;
+            if(x<0){
+                x=0;
+            }else if(x>scroll.offsetWidth-sq.offsetWidth){
+                x=scroll.offsetWidth-sq.offsetWidth;
+            }
+            msk.style.width=x+"px";
+            print.innerHTML=parseInt(x/(scroll.offsetWidth-sq.offsetWidth)*100)+"%";
+            sq.style.left=x+"px";
+
+            window.getSelection? window.getSelection().removeAllRanges():document.selection.empty();//防止bug
+        };
+        document.onmouseup=function () {
+            document.onmousemove=null;
+        };
+    };
+
+
+</script>
+</html>

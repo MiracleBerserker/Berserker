@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>简单焦点轮播图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        img {
+            vertical-align: top;
+        }
+        ul li,ol li {
+            list-style-type: none;
+        }
+
+        .all {
+            width: 500px;
+            height: 200px;
+            padding: 7px;
+            border: 1px solid #ccc;
+            margin: 100px auto;
+            position: relative;
+        }
+        .screen {
+            width: 500px;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        .screen ul {
+            position: absolute;
+            width: 3000px;
+            left: 0;
+            top: 0;
+        }
+        .screen ul li {
+            float: left;
+        }
+        .all ol {
+            position: absolute;
+            bottom: 21px;
+            right: 6%;
+        }
+        .all ol li {
+            width: 22px;
+            height: 22px;
+            border: 1px solid #ccc;
+            margin-left: 10px;
+            background-color: #fff;
+            text-align: center;
+            line-height: 22px;
+            float: left;
+            cursor: pointer;
+        }
+        .all .current{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+  <div class="all">
+      <div class="screen">
+          <ul>
+              <li><img src="images_1/1.jpg" ></li>
+              <li><img src="images_1/2.jpg" ></li>
+              <li><img src="images_1/3.jpg" ></li>
+              <li><img src="images_1/4.jpg" ></li>
+              <li><img src="images_1/5.jpg" ></li>
+          </ul>
+      </div>
+  </div>
+</body>
+<script>
+    var all=document.getElementsByClassName("all")[0];
+    var ul=document.getElementsByClassName("screen")[0].getElementsByTagName("ul")[0];
+    var ulis=ul.children;
+    ul.appendChild(ulis[0].cloneNode(true));
+    console.log(ulis.length);
+    var ol=document.createElement("ol");
+    for(var i=0;i<ulis.length-1;i++){
+       var li= document.createElement("li");
+       li.innerHTML=i+1;
+       ol.appendChild(li);
+    }
+    all.appendChild(ol);
+    olis=ol.children;
+    olis[0].className="current";
+    function animate(obj,target){
+         clearInterval(obj.timer);
+         var speed=obj.offsetLeft> target? -15 : 15;
+         obj.timer=setInterval(function () {
+             if(Math.abs(target-obj.offsetLeft)<=15){
+                   clearInterval(obj.timer);
+                   obj.style.left=target+"px";
+             }else{
+                 obj.style.left=obj.offsetLeft+speed+"px";
+             }
+         },10)
+    }
+    //设置动画
+    for(var j=0;j<olis.length;j++){
+        olis[j].index=j;
+        olis[j].onmousemove=function () {
+            for(var m=0;m<olis.length;m++){
+                olis[m].className="";
+            }
+            this.className="current";
+            key=sq=this.index;
+            animate(ul,-this.index*500)
+        };
+    }
+    //设置自动播放
+    var timer=null;
+    var key=0;
+    var sq=0;
+    function autoPlay () {
+       key++;
+       if(key>ulis.length-1){
+           ul.style.left=0;
+           key=1
+       }
+       animate(ul,-key*500);
+       sq++;
+       if(sq>olis.length-1){
+           sq=0;
+       }
+       for(var p=0;p<olis.length;p++){
+          olis[p].className="";
+       }
+       olis[sq].className="current";
+    }
+    all.onmouseover=function () {
+        clearInterval(timer);
+    };
+    all.onmouseout=function () {
+        timer=setInterval(autoPlay,2000);
+    }
+</script>
+</html>
