@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选择器</title>
+    <style>
+        /*span[class="miracle"],span[class="cherry"]{*/
+            /*color: red;*/
+        /*}*/
+        /*span:nth-last-of-type(1){*/
+            /*color: red;*/
+        /*}*/
+        /*span:last-of-type {*/
+            /*color: red;*/
+        /*}*/
+        /*span:only-child {*/
+            /*color: red;*/
+        /*}*/
+        /*span:target {*/
+            /*color: red;*/
+        /*}*/
+        /*span::selection {*/
+            /*color: red;*/
+        /*}*/
+        /*input::-webkit-input-placeholder {*/
+            /**/
+        /*}*/
+        span:nth-child(3n){
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<!--<span class="miracle">miracle</span>-->
+<!--<span class="cherry">cherry</span>-->
+<div>
+    <span>1</span>
+    <span id="d1">2</span>
+    <span id="d2">3</span>
+    <span id="d3">4</span>
+    <span>5</span>
+    <span>6</span>
+    <span>7</span>
+    <span>8</span>
+</div>
+<div>
+    <span>7</span>
+</div>
+<a href="#d1">d1</a>
+<a href="#d2">d2</a>
+<a href="#d3">d3</a>
+<input type="text" PLACEHOLDER="SDDD">
+</body>
+</html>

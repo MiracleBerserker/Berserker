@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>乱七八糟的东西</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<input type="text" list="data" autocomplete="false">
+<datalist id="data">
+    <option value="miracle" />
+    <option value="cherry" />
+    <option value="huishao" />
+</datalist>
+<details>
+    <summary>miracle</summary>
+    dddddddddd
+</details>
+<progress value="30" max="300" ></progress>
+<hr size="5px" color="red"/>
+<ul class="user">
+    <li data-id="1">miracle</li>
+    <li data-id="2">cherry</li>
+    <li data-id="3">berserker</li>
+</ul>
+</body>
+<script>
+    var ul=document.getElementsByClassName("user")[0];
+    var lis=ul.children;
+    for(var i=0;i<lis.length;i++){
+        lis[i].innerHTML+="    :"+new Date().toLocaleTimeString();
+    }
+
+
+</script>
+</html>
