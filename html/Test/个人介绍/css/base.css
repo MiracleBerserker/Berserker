@@ -1,0 +1,120 @@
+@charset "UTF-8";
+/*css 初始化 */
+html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img { margin:0; padding:0; }
+fieldset, img,input,button { border:none; padding:0;margin:0;outline-style:none; }
+ul, ol { list-style:none; }
+input { padding-top:0; padding-bottom:0; font-family: "SimSun","宋体";}
+select, input { vertical-align:middle;}
+select, input, textarea { font-size:12px; margin:0; }
+textarea { resize:none; } /*防止拖动*/
+img {border:0;	vertical-align:middle; }  /*  去掉图片低测默认的3像素空白缝隙*/
+table { border-collapse:collapse; }
+body {
+    font:12px/150% Arial,Verdana,"\5b8b\4f53";
+    color:#666;
+    background:#fff
+}
+/*清除浮动*/
+.clearfix:before,.clearfix:after {
+    content:"";
+    display:table;
+}
+.clearfix:after{clear:both;}
+.clearfix{
+    *zoom:1;/*IE/7/6*/
+}
+a {color:#666; text-decoration:none; }
+a:hover{color:#C81623;}
+h1,h2,h3,h4,h5,h6 {text-decoration:none;font-weight:normal;font-size:100%;}
+s,i,em{font-style:normal;text-decoration:none;}
+.col-red{color: #C81623!important;}
+
+html,body {
+    display: block;
+    height: 100%;
+}
+.box {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.box .top {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    background-color: #000;
+    top: 0;
+}
+.box .bottom {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    background-color: #000;
+    bottom: 0;
+}
+.box .center {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: 6px;
+    margin-top: -6px;
+}
+.box .line {
+    height:2px;
+    margin:2px 0;
+    background:#2187e7;
+    position:absolute;
+    box-shadow:0 0 10px 1px rgba(0,198,255,0.7);
+    -moz-animation:fullexpand 20s 0.5s linear ;
+    -moz-animation-fill-mode: forwards;
+    -webkit-animation:fullexpand 20s 0.5s linear ;
+    -webkit-animation-fill-mode: forwards;
+}
+@-moz-keyframes fullexpand{
+    0%{width:0;}
+    100%{ width:50%;}
+}
+@-webkit-keyframes fullexpand{
+    0%{width:0;right: 100%;}
+    50%{width: 100%;right: 0;}
+    100% {width: 0;right: 52.5%;}
+}
+
+/*本来想做的更加生动的 仔细想想我是后台= = 做不来..........*/
+.box .start {
+    position: absolute;
+    margin: -30px auto;
+    margin-left: -72px;
+    width: 60px;
+    height: 60px;
+    z-index: 10;
+    border: 6px solid #fff;
+    border-radius: 50%;
+    color: #2187e7;
+    background-color: #000;
+    text-align: center;
+    line-height: 60px;
+    font-size: 25px;
+    left: 50%;
+    cursor: pointer;
+}
+.box .start:hover {
+    box-shadow:0 0 20px 2px rgba(0,198,255,0.7);
+}
+.info {
+    position: absolute;
+    left: 20%;
+    top:50%;
+    width: 500px;
+    height: 315px;
+}
+.info li {
+    display: none;
+    color: #fff;
+    font-size: 30px;
+    width: 500px;
+    height: 30px;
+    line-height: 30px;
+    margin-bottom: 5px;
+}

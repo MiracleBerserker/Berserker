@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>a标签跳跃</title>
+    <style>
+        ul li {
+            list-style-type: none;
+            display: block;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            background-color: #ccc;
+        }
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            margin: 100px auto;
+            width: 500px;
+            height: 200px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+   <div class="box">
+       <img src="images_1/1.jpg" id="img1">
+       <img src="images_1/2.jpg" id="img2">
+       <img src="images_1/3.jpg" id="img3">
+       <img src="images_1/4.jpg" id="img4">
+       <img src="images_1/5.jpg" id="img5">
+   </div>
+   <ul>
+       <li><a href="#img1"></a></li>
+       <li><a href="#img2"></a></li>
+       <li><a href="#img3"></a></li>
+       <li><a href="#img4"></a></li>
+       <li><a href="#img5"></a></li>
+   </ul>
+</body>
+</html>

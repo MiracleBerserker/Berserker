@@ -3,8 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>音频</title>
+
+    <style>
+        ul {
+            list-style-type: none;
+           display: flex;
+           justify-content: space-around;
+        }
+
+        button {
+            width: 50px;
+            height: 50px;
+            background-color: #d2d2d2;
+            outline-style: none; //消除按钮点击的边框蓝色
+        }
+    </style>
 </head>
 <body>
-<audio src="music/music.mp3" controls="controls"></audio>
+<audio id="music">
+    <source src="music/music.mp3"/>
+</audio>
+<ul>
+    <li><button>开始</button></li>
+    <li><button>暂停</button></li>
+</ul>
 </body>
+<script>
+    var music=document.querySelector("#music");
+    var bus=document.querySelectorAll("button");
+  console.log(music);
+    bus[0].addEventListener("click",function () {
+        music.play();
+    });
+    bus[1].addEventListener("click",function () {
+        music.pause();
+    });
+</script>
 </html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ps</title>
+    <style>
+        html body,ul{
+            margin: 0;
+            padding: 0;
+        }
+        img {
+            vertical-align: top;
+        }
+        ul li {
+            list-style-type: none;
+        }
+        .nav ul {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+        }
+        .nav ul li {
+            margin-right: 15px;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            float: left;
+            color: #fff;
+            font-size: 20px;
+            font-family: "微软雅黑","宋体";
+            cursor: pointer;
+        }
+        .nav ul li:hover {
+            color: #07e7f7;
+        }
+        .nav {
+            height: 60px;
+            width: 100%;
+            position: relative;
+            background-color: #333;
+        }
+        .nav .login,.nav .register{
+            float: right;
+
+        }
+        .nav li img{
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+        }
+
+        .nav .logo {
+            width: 145px;
+        }
+        .box .slider {
+            position: absolute;
+            width: 100%;
+            height: 650px;
+            overflow: hidden;
+        }
+        .box {
+            width: 100%;
+            height: 650px;
+            position: relative;
+        }
+        .box .arrow {
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            margin-top: -48px;
+        }
+        .box .prev {
+            float: left;
+        }
+        .box .next {
+            float: right;
+        }
+        .box span:hover {
+            background-color: rgba(0,0,0,0.4);
+        }
+        .box span {
+            width: 48px;
+            height: 48px;
+            cursor: pointer;
+        }
+        .box .imgs {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 500%;
+            height: 650px;
+        }
+        .box .imgs li {
+            float: left;
+            width: 20%;
+        }
+        .box li img {
+            display: block;
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+<nav class="nav">
+    <ul>
+        <li class="logo"><img src="images/logo.png"></li>
+        <li>首页</li>
+        <li>体验</li>
+        <li>社区</li>
+        <li>状态</li>
+        <li>待法</li>
+        <li>关于我们</li>
+        <li class="login">登录</li>
+        <li class="register">注册</li>
+    </ul>
+</nav>
+<div class="box">
+<div class="slider">
+    <ul class="imgs">
+        <li><img src="images/banner1.jpg" /></li>
+        <li><img src="images/banner2.jpg" /></li>
+        <li><img src="images/banner3.jpg" /></li>
+        <li><img src="images/banner4.jpg" /></li>
+        <li><img src="images/banner5.jpg" /></li>
+    </ul>
+</div>
+    <div class="arrow">
+        <span class="prev"><img src="images/prev.png"></span>
+        <span class="next"><img src="images/next.png"></span>
+    </div>
+</div>
+
+
+</body>
+<script>
+
+    //封装动画属性
+    function animation(obj,json,fn) {
+        clearInterval(obj.timer);
+        obj.timer=setInterval(function () {
+            var flag=true;
+            for(var attr in json){
+                var current =getstyle(obj,attr);
+                var step=(json[attr]-current)/10;
+                step=step>0?Math.ceil(step):Math.floor(step);
+                obj.style[attr]=current+step+"px";
+                if(current!=json[attr]){
+                    flag=false;
+                }
+                if(flag){
+                    clearInterval(obj.timer);
+                    if(fn){
+                        fn();
+                    }
+                }
+
+            }
+        },15)
+    }
+    //封装获取属性的方法
+    function getstyle(obj,attr) {
+        if(obj.currentStyle){
+            return parseInt(obj.currentStyle[attr]);
+        }else {
+            return parseInt(window.getComputedStyle(obj,null)[attr]);
+        }
+    }
+
+    var ul=document.querySelector(".slider ul");
+    var slider=document.querySelector(".slider");
+    document.querySelector(".box .prev").addEventListener("click",function () {
+        var target=getstyle(ul,"left")<0?getstyle(ul,"left")+getstyle(slider,"width"):0;
+        animation(ul,{left: target});
+    });
+    document.querySelector(".box .next").addEventListener("click",function () {
+        var target=getstyle(ul,"left")>-getstyle(slider,"width")*4?getstyle(ul,"left")-getstyle(slider,"width"):-getstyle(slider,"width")*4;
+        console.log(target);
+        animation(ul,{left: target});
+    })
+
+</script>
+</html>
